@@ -24,7 +24,7 @@ const Search = ({ onSearch }) => {
       <Drawer onClose={onClose} isOpen={isOpen} placement="left" size={"sm"}>
         <DrawerOverlay />
         <DrawerContent bgColor="#1E213A">
-          <DrawerCloseButton />
+          <DrawerCloseButton color="#fff" />
           <DrawerHeader color="#fff">Search for Location</DrawerHeader>
           <DrawerBody>
             <HStack>

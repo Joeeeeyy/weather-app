@@ -2,9 +2,7 @@ import React from 'react';
 import { Progress, Icon, Heading, Card, Box, Text, chakra, HStack } from '@chakra-ui/react';
 import { WiWindDeg } from "react-icons/wi";
 
-function convertWindDirection(windDirection) {
-  const angle = { windDirection };
-
+function convertWindDirection(angle) {
   if (angle >= 0 && angle < 22.5) {
     return 'N';
   } else if (angle >= 22.5 && angle < 45) {
@@ -29,7 +27,7 @@ function convertWindDirection(windDirection) {
     return 'SW';
   } else if (angle >= 247.5 && angle < 270) {
     return 'WSW';
-  } else if (angle >= 292.5 && angle < 337.5) {
+  } else if (angle >= 270 && angle < 292.5) {
     return 'W';
   } else if (angle >= 292.5 && angle < 315) {
     return 'WNW';
@@ -42,8 +40,12 @@ function convertWindDirection(windDirection) {
   }
 }
 
-function WeatherDetails({ windSpeed, windDirection, humidity, visibility, airPressure }) {
-  const wordWindDirection = convertWindDirection(windDirection);
+function WeatherDetails({ details }) {
+  const wordWindDirection = convertWindDirection(details.windDirection);
+
+  const formatNumberWithCommas = (number) => {
+    return number.toLocaleString();
+  };
   return (
     <chakra.div my="45px" gap="20px">
       <Heading my="30px" fontSize="24px">Today's Highlights</Heading>
@@ -66,11 +68,11 @@ function WeatherDetails({ windSpeed, windDirection, humidity, visibility, airPre
         >
           <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Wind Speed</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{windSpeed.toFixed(0)}</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{formatNumberWithCommas(details.windSpeed)}</Text>
             <Text fontSize={"24px"} color="#E7E7EB">mph</Text>
           </HStack>
           <HStack>
-            <Icon as={WiWindDeg} style={{ transform: `rotate(${windDirection}deg)` }} fontSize="30px" color="#E7E7EB" />
+            <Icon as={WiWindDeg} style={{ transform: `rotate(${details.windDirection}deg)` }} fontSize="30px" color="#E7E7EB" />
             <Text fontSize={"24px"} color="#E7E7EB">{wordWindDirection}</Text>
           </HStack>
         </Card>
@@ -93,7 +95,7 @@ function WeatherDetails({ windSpeed, windDirection, humidity, visibility, airPre
         >
           <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Humidity</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{humidity}</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{formatNumberWithCommas(details.humidity)}</Text>
             <Text fontSize={"24px"} color="#E7E7EB">%</Text>
           </HStack>
           <HStack w="350px" justifyContent={"space-between"}>
@@ -101,7 +103,7 @@ function WeatherDetails({ windSpeed, windDirection, humidity, visibility, airPre
             <chakra.p color="#fff" fontSize="12px">50</chakra.p>
             <chakra.p color="#fff" fontSize="12px">100</chakra.p>
           </HStack>
-          <Progress width="350px" borderRadius="lg" value={humidity} size="lg" colorScheme="yellow" min={0} max={100} />
+          <Progress width="350px" borderRadius="lg" value={details.humidity} size="lg" colorScheme="yellow" min={0} max={100} />
         </Card>
       </Box>
       <Box display="grid" gridAutoFlow="column" gridTemplateColumns={"repeat(2, 1fr)"} gap={"20px"} width="1000px" mx="auto">
@@ -124,7 +126,7 @@ function WeatherDetails({ windSpeed, windDirection, humidity, visibility, airPre
         >
           <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Visibility</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{visibility.toFixed(0)}</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{formatNumberWithCommas(details.visibility)}</Text>
             <Text fontSize={"24px"} color="#E7E7EB">miles</Text>
           </HStack>
         </Card>
@@ -147,12 +149,11 @@ function WeatherDetails({ windSpeed, windDirection, humidity, visibility, airPre
         >
           <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Air Pressure</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{airPressure.toFixed(0)}</Text>
-            <Text fontSize={"24px"} color="#E7E7EB">mb</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{formatNumberWithCommas(details.airPressure)}</Text>            <Text fontSize={"24px"} color="#E7E7EB">mb</Text>
           </HStack>
         </Card>
       </Box>
-    </chakra.div >
+    </chakra.div>
   );
 }
 

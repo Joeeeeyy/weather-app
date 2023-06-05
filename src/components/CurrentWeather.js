@@ -1,39 +1,55 @@
 import React from "react";
 import { IconContext } from 'react-icons';
 import { HStack, Text, chakra, Box } from "@chakra-ui/react";
+import moment from "moment";
 
-function CurrentWeather({ icon, temperature, conditions, date, location }) {
+const CurrentWeather = ({ temp, conditions, icon, city, country, isCelsius, weather }) => {
   const getWeatherIcon = (icon) => {
     // Map Visual Crossings API icon codes to icon paths
     switch (icon) {
-      case "clear-day":
+      case "01d":
         return require("../icons/clear-day.svg").default;
-      case "clear-night":
+      case "01n":
         return require("../icons/clear-night.svg").default;
-      case "partly-cloudy-day":
+      case "02d":
         return require("../icons/partly-cloudy-day.svg").default;
-      case "partly-cloudy-night":
+      case "02n":
         return require("../icons/partly-cloudy-night.svg").default;
-      case "cloudy":
+      case "03d":
         return require("../icons/cloudy.svg").default;
-      case "rain":
+      case "03n":
+        return require("../icons/cloudy.svg").default;
+      case "04d":
+        return require("../icons/overcast-day.svg").default;
+      case "04n":
+        return require("../icons/overcast-night.svg").default;
+      case "09d":
         return require("../icons/rain.svg").default;
-      case "snow":
+      case "09n":
+        return require("../icons/rain.svg").default;
+      case "10d":
+        return require("../icons/partly-cloudy-day-rain.svg").default;
+      case "10n":
+        return require("../icons/partly-cloudy-night-rain.svg").default;
+      case "11d":
+        return require("../icons/partly-cloudy-night-rain.svg").default;
+      case "11n":
+        return require("../icons/partly-cloudy-night-rain.svg").default;
+      case "13d":
         return require("../icons/snow.svg").default;
-      case "sleet":
-        return require("../icons/sleet.svg").default;
-      case "wind":
-        return require("../icons/wind.svg").default;
-      case "fog":
-        return require("../icons/fog.svg").default;
-      case "hail":
-        return require("../icons/hail.svg").default;
-      case "thunderstorm":
-        return require("../icons/thunderstorms.svg").default;
+      case "13n":
+        return require("../icons/partly-cloudy-night-rain.svg").default;
+      case "50d":
+        return require("../icons/mist.svg").default;
+      case "50n":
+        return require("../icons/partly-cloudy-night-rain.svg").default;
       default:
         return null;
-    }
+    };
   };
+
+
+  const date = moment().format('LL');
 
   return (
     <div>
@@ -41,7 +57,7 @@ function CurrentWeather({ icon, temperature, conditions, date, location }) {
         <HStack justifyContent={"center"} alignItems={"center"}>
           <IconContext.Provider value={{ size: '300px' }}>
             <chakra.img
-              src={getWeatherIcon(icon)}
+              src={getWeatherIcon(weather.icon)}
               alt={icon}
               width="300px"
               height="300px"
@@ -49,21 +65,23 @@ function CurrentWeather({ icon, temperature, conditions, date, location }) {
           </IconContext.Provider>
         </HStack>
         <HStack>
-          <Text fontWeight="600" fontFamily="Poppins" fontSize="144px" textAlign={"center"}>{temperature.toFixed(0)}</Text>
-          <Text fontFamily="Poppins" fontSize="48px" fontWeight="500">&deg;F</Text>
+          <Text fontWeight="600" fontFamily="Poppins" fontSize="144px" textAlign={"center"}>{weather.temp.toFixed(0)}</Text>
+          <Text fontSize="48px" fontWeight="semibold">
+            {isCelsius ? "°C" : "°F"}
+          </Text>
         </HStack>
         <HStack>
-          <Text textTransform={"capitalize"} textAlign={"center"} color="#A09FB1" fontWeight="500" fontSize="36px">{conditions}</Text>
+          <Text textTransform={"capitalize"} textAlign={"center"} color="#A09FB1" fontWeight="500" fontSize="36px">{weather.conditions}</Text>
         </HStack>
         <HStack>
           <Text fontWeight="300" fontFamily="Poppins" fontSize="18px" textAlign={" center"}>{date}</Text>
         </HStack>
         <HStack>
-          <Text textAlign={"center"}>{location}</Text>
+          <Text fontWeight="300" fontFamily="Poppins" fontSize="18px" textAlign={" center"}>{weather.city}, {weather.country}</Text>
         </HStack>
-      </Box >
-    </div >
+      </Box>
+    </div>
   );
-}
+};
 
 export default CurrentWeather;
