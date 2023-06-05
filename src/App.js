@@ -129,7 +129,7 @@ const App = () => {
           </HStack>
           <VStack spacing={8} alignItems="center" my="45px">
             <Heading as="h1" size="lg" className="date-heading">
-              Today
+              {currentWeather.city}
             </Heading>
             {currentWeather && (
               <CurrentWeather
