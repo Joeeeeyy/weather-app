@@ -6,6 +6,9 @@
   "repository": "git@github.com:Joeeeeyy/weather-app.git",
   "author": "Jose Guillermo Lopez <joseglopez1289@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.0",
