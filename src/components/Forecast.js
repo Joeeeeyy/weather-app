@@ -53,7 +53,24 @@ const Forecast = ({ forecast, isCelsius }) => {
     };
   };
 
-  const next5DaysForecast = forecast.slice(0, 5);
+  const filterUniqueDates = (forecast) => {
+    const uniqueDates = [];
+    const filteredForecast = [];
+
+    for (let i = 0; i < forecast.length; i++) {
+      const date = moment(forecast[i].date).format("YYYY-MM-DD");
+
+      if (!uniqueDates.includes(date) && filteredForecast.length < 5) {
+        uniqueDates.push(date);
+        filteredForecast.push(forecast[i]);
+      }
+    }
+
+    return filteredForecast;
+  };
+
+  const next5DaysForecast = filterUniqueDates(forecast);
+
 
   return (
     <chakra.div my="45px" gap="50px">

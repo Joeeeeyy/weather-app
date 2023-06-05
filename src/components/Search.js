@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Input, HStack, InputGroup, InputLeftElement, Drawer, DrawerBody, DrawerHeader, DrawerCloseButton, DrawerOverlay, useDisclosure, DrawerContent, Button } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
+import Presets from './Presets';
 
 const Search = ({ onSearch }) => {
   const [city, setCity] = useState('');
@@ -20,7 +21,7 @@ const Search = ({ onSearch }) => {
 
   return (
     <>
-      <Button fontSize="12px" bgColor="#6E707A" fontWeight="400" onClick={onOpen} _hover={{ bgColor: "#585676", color: "#fff" }}>Search for Location</Button>
+      <Button fontSize="16px" fontWeight="400" onClick={onOpen} _hover={{ bgColor: "#585676", color: "#fff" }}>Search for Location</Button>
       <Drawer onClose={onClose} isOpen={isOpen} placement="left" size={"sm"}>
         <DrawerOverlay />
         <DrawerContent bgColor="#1E213A">
@@ -34,6 +35,7 @@ const Search = ({ onSearch }) => {
               </InputGroup>
               <Button onClick={handleSearch} size="md" mx="3px" bgColor="#3C47E9" color="#fff">Search</Button>
             </HStack>
+            <Presets setCity={onSearch} onClose={onClose} /> {/* Pass the `onSearch` and `onClose` functions to `Presets.js` */}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
@@ -41,4 +43,4 @@ const Search = ({ onSearch }) => {
   )
 }
 
-export default Search
+export default Search;

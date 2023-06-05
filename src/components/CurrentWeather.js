@@ -1,6 +1,7 @@
 import React from "react";
 import { IconContext } from 'react-icons';
-import { HStack, Text, chakra, Box } from "@chakra-ui/react";
+import { HStack, Text, chakra, Box, Icon } from "@chakra-ui/react";
+import { IoLocation } from 'react-icons/io5';
 import moment from "moment";
 
 const CurrentWeather = ({ temp, conditions, icon, city, country, isCelsius, weather }) => {
@@ -74,10 +75,11 @@ const CurrentWeather = ({ temp, conditions, icon, city, country, isCelsius, weat
           <Text textTransform={"capitalize"} textAlign={"center"} color="#A09FB1" fontWeight="500" fontSize="36px">{weather.conditions}</Text>
         </HStack>
         <HStack>
-          <Text fontWeight="300" fontFamily="Poppins" fontSize="18px" textAlign={" center"}>{date}</Text>
+          <Text fontWeight="500" fontFamily="Poppins" fontSize="18px" textAlign={" center"}>Today, {date}</Text>
         </HStack>
         <HStack>
-          <Text fontWeight="300" fontFamily="Poppins" fontSize="18px" textAlign={" center"}>{weather.city}, {weather.country}</Text>
+          <IoLocation />
+          <Text fontWeight="400" fontFamily="Poppins" fontSize="18px" textAlign={" center"}>{weather.city}, {weather.country}</Text>
         </HStack>
       </Box>
     </div>
