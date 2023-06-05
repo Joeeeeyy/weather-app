@@ -1,6 +1,6 @@
 import React from "react";
 import { IconContext } from 'react-icons';
-import { HStack, Text, chakra, Box, Icon } from "@chakra-ui/react";
+import { HStack, Text, chakra, Box } from "@chakra-ui/react";
 import { IoLocation } from 'react-icons/io5';
 import moment from "moment";
 
