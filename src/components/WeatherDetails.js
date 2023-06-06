@@ -42,10 +42,12 @@ function convertWindDirection(angle) {
 
 function WeatherDetails({ details }) {
   const wordWindDirection = convertWindDirection(details.windDirection);
+  const roundedWindSpeed = Math.ceil(details.windSpeed);
+  const roundedHumidity = Math.ceil(details.humidity);
+  const roundedVisibility = Math.ceil(details.visibility);
+  const roundedAirPressure = Math.ceil(details.airPressure);
 
-  const formatNumberWithCommas = (number) => {
-    return number.toLocaleString();
-  };
+
   return (
     <chakra.div my="45px" gap="20px">
       <Heading my="30px" fontSize="24px">Today's Highlights</Heading>
@@ -68,7 +70,7 @@ function WeatherDetails({ details }) {
         >
           <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Wind Speed</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{formatNumberWithCommas(details.windSpeed)}</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{roundedWindSpeed.toLocaleString()}</Text>
             <Text fontSize={"24px"} color="#E7E7EB">mph</Text>
           </HStack>
           <HStack>
@@ -95,7 +97,7 @@ function WeatherDetails({ details }) {
         >
           <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Humidity</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{formatNumberWithCommas(details.humidity)}</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{roundedHumidity.toLocaleString()}</Text>
             <Text fontSize={"24px"} color="#E7E7EB">%</Text>
           </HStack>
           <HStack w="350px" justifyContent={"space-between"}>
@@ -126,7 +128,7 @@ function WeatherDetails({ details }) {
         >
           <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Visibility</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{formatNumberWithCommas(details.visibility)}</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{roundedVisibility.toLocaleString()}</Text>
             <Text fontSize={"24px"} color="#E7E7EB">miles</Text>
           </HStack>
         </Card>
@@ -149,7 +151,8 @@ function WeatherDetails({ details }) {
         >
           <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Air Pressure</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{formatNumberWithCommas(details.airPressure)}</Text>            <Text fontSize={"24px"} color="#E7E7EB">mb</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{roundedAirPressure.toLocaleString()}</Text>
+            <Text fontSize={"24px"} color="#E7E7EB">mb</Text>
           </HStack>
         </Card>
       </Box>
