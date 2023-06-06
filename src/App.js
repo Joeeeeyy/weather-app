@@ -11,8 +11,8 @@ import "./App.css";
 
 const App = () => {
   const [currentWeather, setCurrentWeather] = useState({});
-  const [forecast, setForecast] = useState(null);
-  const [weatherDetails, setWeatherDetails] = useState(null);
+  const [forecast, setForecast] = useState({});
+  const [weatherDetails, setWeatherDetails] = useState({});
   const [city, setCity] = useState("Helsinki");
   const [isCelsius, setIsCelsius] = useState(false);
 

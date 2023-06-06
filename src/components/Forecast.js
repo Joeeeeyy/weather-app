@@ -128,12 +128,12 @@ const Forecast = ({ forecast, isCelsius }) => {
                 <HStack color="#E7E7EB" display="flex">
                   <Text>
                     <ArrowUpIcon />
-                    {day.maxTemp.toFixed(0)}
+                    {day.maxTemp.toFixed(1)}
                     {isCelsius ? "°C" : "°F"}{" "}
                   </Text>
                   <Text>
                     <ArrowDownIcon />
-                    {day.minTemp.toFixed(0)}
+                    {day.minTemp.toFixed(1)}
                     {isCelsius ? "°C" : "°F"}
                   </Text>
                 </HStack>

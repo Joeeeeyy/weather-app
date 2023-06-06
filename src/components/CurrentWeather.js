@@ -66,7 +66,7 @@ const CurrentWeather = ({ temp, conditions, icon, city, country, isCelsius, weat
           </IconContext.Provider>
         </HStack>
         <HStack>
-          <Text fontWeight="600" fontFamily="Poppins" fontSize="144px" textAlign={"center"}>{weather.temp.toFixed(0)}</Text>
+          <Text fontWeight="600" fontFamily="Poppins" fontSize="144px" textAlign={"center"}>{Math.round(weather.temp)}</Text>
           <Text fontSize="48px" fontWeight="semibold">
             {isCelsius ? "°C" : "°F"}
           </Text>
