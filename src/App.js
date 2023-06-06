@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import "./App.css";
 
 const App = () => {
-  const [currentWeather, setCurrentWeather] = useState(null);
+  const [currentWeather, setCurrentWeather] = useState({});
   const [forecast, setForecast] = useState(null);
   const [weatherDetails, setWeatherDetails] = useState(null);
   const [city, setCity] = useState("Helsinki");
@@ -129,7 +129,7 @@ const App = () => {
           </HStack>
           <VStack spacing={8} alignItems="center" my="45px">
             <Heading as="h1" size="lg" className="date-heading">
-              {currentWeather.city}
+              {city}
             </Heading>
             {currentWeather && (
               <CurrentWeather
