@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { IconButton, ChakraProvider, Heading, VStack, HStack } from "@chakra-ui/react";
+import { IconButton, ChakraProvider, chakra, Heading, VStack, HStack } from "@chakra-ui/react";
 import { FaCrosshairs } from "react-icons/fa";
 import CurrentWeather from "./components/CurrentWeather";
 import Forecast from "./components/Forecast";
@@ -14,7 +14,11 @@ const App = () => {
   const [forecast, setForecast] = useState({});
   const [weatherDetails, setWeatherDetails] = useState({});
   const [city, setCity] = useState("Helsinki");
-  const [isCelsius, setIsCelsius] = useState(false);
+  const [isCelsius, setIsCelsius] = useState(true); // default to Celsius
+
+  const toggleUnit = () => {
+    setIsCelsius(!isCelsius);
+  };
 
   const apiKey = "4fdce55d989f37e51e5cd7bba4198549";
 
@@ -31,9 +35,9 @@ const App = () => {
     setCity(city);
   };
 
-  const toggleTemperatureUnit = () => {
-    setIsCelsius(!isCelsius);
-  };
+  // const toggleTemperatureUnit = () => {
+  //   setIsCelsius(!isCelsius);
+  // };
 
   const success = (position) => {
     const lat = position.coords.latitude;
@@ -112,9 +116,9 @@ const App = () => {
 
   return (
     <ChakraProvider>
-      <div className="app">
+      <chakra.div className="app" bgGradient='linear(to-r, #1e2039 0%, #16162a 32%)'>
         <div className="left-side">
-          <HStack justifyContent="space-between" mb="55px" mt="45px" h="45px" mx="35px">
+          <HStack justifyContent="space-between" mb="55px" pt="45px" h="45px" mx="35px">
             <Search onSearch={handleSearch} />
             <IconButton
               borderRadius="full"
@@ -133,21 +137,28 @@ const App = () => {
             </Heading>
             {currentWeather && (
               <CurrentWeather
-                weather={currentWeather}
                 isCelsius={isCelsius}
-                toggleTemperatureUnit={toggleTemperatureUnit}
-              />
-            )}
+                weather={currentWeather}
+                toggleUnit={toggleUnit}
+              />)}
           </VStack>
         </div>
         <div className="right-side">
           <VStack alignItems="center">
-            {forecast && <Forecast forecast={forecast} isCelsius={isCelsius} />}
-            {weatherDetails && <WeatherDetails details={weatherDetails} />}
+            {forecast &&
+              <Forecast
+                forecast={forecast}
+                isCelsius={isCelsius}
+                toggleUnit={toggleUnit}
+              />}
+            {weatherDetails &&
+              <WeatherDetails
+                details={weatherDetails}
+              />}
             <Footer />
           </VStack>
         </div>
-      </div>
+      </chakra.div>
     </ChakraProvider>
   );
 };

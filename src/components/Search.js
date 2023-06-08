@@ -21,7 +21,7 @@ const Search = ({ onSearch }) => {
 
   return (
     <>
-      <Button fontSize="16px" fontWeight="400" onClick={onOpen} _hover={{ bgColor: "#585676", color: "#fff" }}>Search for Location</Button>
+      <Button fontWeight="400" fontSize="14px" fontFamily="Inter Tight" onClick={onOpen} _hover={{ bgColor: "#585676", color: "#fff" }}>Search for Location</Button>
       <Drawer onClose={onClose} isOpen={isOpen} placement="left" size={"sm"}>
         <DrawerOverlay />
         <DrawerContent bgColor="#1E213A">

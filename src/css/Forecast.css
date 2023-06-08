@@ -1,0 +1,12 @@
+.forecast-container {
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+
+@media only screen and (max-width: 768px) {
+  .forecast-container {
+    display: grid;
+    margin-right: 0;
+    overflow: scroll;
+  }
+}

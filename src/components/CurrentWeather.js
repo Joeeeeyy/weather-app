@@ -1,10 +1,10 @@
 import React from "react";
 import { IconContext } from 'react-icons';
-import { HStack, Text, chakra, Box } from "@chakra-ui/react";
+import { HStack, Text, chakra, Box, Button } from "@chakra-ui/react";
 import { IoLocation } from 'react-icons/io5';
 import moment from "moment";
 
-const CurrentWeather = ({ temp, conditions, icon, city, country, isCelsius, weather }) => {
+const CurrentWeather = ({ icon, isCelsius, weather, toggleUnit }) => {
   const getWeatherIcon = (icon) => {
     // Map Visual Crossings API icon codes to icon paths
     switch (icon) {
@@ -49,40 +49,45 @@ const CurrentWeather = ({ temp, conditions, icon, city, country, isCelsius, weat
     };
   };
 
+  const toggleUnits = () => {
+    toggleUnit();
+  };
 
   const date = moment().format('LL');
 
   return (
-    <div>
-      <Box display="flex" flexDirection={"column"} alignItems={"center"} gap="20px">
-        <HStack justifyContent={"center"} alignItems={"center"}>
-          <IconContext.Provider value={{ size: '300px' }}>
-            <chakra.img
-              src={getWeatherIcon(weather.icon)}
-              alt={icon}
-              width="300px"
-              height="300px"
-            />
-          </IconContext.Provider>
-        </HStack>
-        <HStack>
-          <Text fontWeight="600" fontFamily="Poppins" fontSize="144px" textAlign={"center"}>{Math.round(weather.temp)}</Text>
-          <Text fontSize="48px" fontWeight="semibold">
-            {isCelsius ? "°C" : "°F"}
-          </Text>
-        </HStack>
-        <HStack>
-          <Text textTransform={"capitalize"} textAlign={"center"} color="#A09FB1" fontWeight="500" fontSize="36px">{weather.conditions}</Text>
-        </HStack>
-        <HStack>
-          <Text fontWeight="500" fontFamily="Poppins" fontSize="18px" textAlign={" center"}>Today, {date}</Text>
-        </HStack>
-        <HStack>
-          <IoLocation />
-          <Text fontWeight="400" fontFamily="Poppins" fontSize="18px" textAlign={" center"}>{weather.city}, {weather.country}</Text>
-        </HStack>
-      </Box>
-    </div>
+    <Box display="flex" flexDirection={"column"} alignItems={"center"} gap="20px" my="45px">
+      <HStack justifyContent={"center"} alignItems={"center"}>
+        <IconContext.Provider value={{ size: '300px' }}>
+          <chakra.img
+            src={getWeatherIcon(weather.icon)}
+            alt={icon}
+            width="300px"
+            height="300px"
+          />
+        </IconContext.Provider>
+      </HStack>
+      <HStack align="baseline">
+        <Text fontWeight="600" fontFamily="Titan One" fontSize="170px" textAlign={"center"}>{Math.round(weather.temp)}</Text>
+        <Text fontSize="60px" color="#A09FB1" fontFamily="Asap Condensed" fontWeight="semibold" onClick={toggleUnit} style={{ cursor: 'pointer' }}>
+          {isCelsius ? "°C" : "°F"}
+        </Text>
+      </HStack>
+      <HStack>
+        <Text textTransform={"capitalize"} textAlign={"center"} color="#A09FB1" fontWeight="800" fontSize="32px" fontFamily="Inter Tight">{weather.conditions}</Text>
+      </HStack>
+      <HStack>
+        <Text fontWeight="300" fontFamily="Inter" fontSize="16px" textAlign={"center"}>Today, {date}</Text>
+      </HStack>
+      <HStack>
+        <IoLocation font-size="14px" />
+        <Text fontWeight="400" fontFamily="Inter" fontSize="16px" textAlign={"center"}>{weather.city}, {weather.country}</Text>
+      </HStack>
+      <Button onClick={toggleUnits} size="md" bgColor="#3C47E9" fontWeight="400" fontSize="14px"
+        fontFamily="Inter Tight" color="#fff">
+        Toggle Units
+      </Button>
+    </Box>
   );
 };
 

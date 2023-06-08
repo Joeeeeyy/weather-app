@@ -1,17 +1,34 @@
 .app {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  /* background: linear-gradient(90deg, #1e2039 0%, #16162a 30%); */
+  display: flex;
   color: #fff;
-  height: screen;
+  font-family: 'Asap Condensed', sans-serif;
+  align-items: center;
+  width: 100%;
+  min-height:100vh;
 }
 
 .left-side {
   align-items: center;
   justify-content: center;
-  background: #1e2039;
+  width: 25%;
 }
 
 .right-side {
-  background: #16162a;
+  width: 75%;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: linear-gradient(to bottom, #1e2039, #16162a)
+  }
+  
+  .left-side, 
+  .right-side {
+    width: 100%;
+  }
 }

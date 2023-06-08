@@ -1,6 +1,7 @@
 import React from 'react';
 import { Progress, Icon, Heading, Card, Box, Text, chakra, HStack } from '@chakra-ui/react';
 import { WiWindDeg } from "react-icons/wi";
+import "../css/WeatherDetails.css"
 
 function convertWindDirection(angle) {
   if (angle >= 0 && angle < 22.5) {
@@ -49,18 +50,22 @@ function WeatherDetails({ details }) {
 
 
   return (
-    <chakra.div my="45px" gap="20px">
-      <Heading my="30px" fontSize="24px">Today's Highlights</Heading>
-      <Box display="grid" gridAutoFlow="column" gridTemplateColumns={"repeat(2, 1fr)"} gap={"20px"} width="1000px" mx="auto" mb="30px">
+    <div className="highlights" justify="center" align="center">
+      <Heading fontSize="24px" fontFamily="Inter Tight">
+        Today's Highlights
+      </Heading>
+      <Box display="grid" gridAutoFlow="column" gridTemplateColumns={"repeat(2, 1fr)"} gap={"20px"} mx="auto" className="highlight-row">
         <Card
+          className="highlight-card"
+          fontFamily="Inter Tight"
           bgColor="#1E213A"
           variant="elevated"
-          width="460px"
+          width={["350px", "460px"]}
           height="230px"
           borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
-          boxShadow="dark-lg"
+          boxShadow="slg"
           m={2}
           p={2}
           textAlign="center"
@@ -68,26 +73,28 @@ function WeatherDetails({ details }) {
           alignItems="center"
           gap="10px"
         >
-          <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Wind Speed</chakra.p>
+          <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Inter" fontSize="18px">Wind Speed</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{roundedWindSpeed.toLocaleString()}</Text>
-            <Text fontSize={"24px"} color="#E7E7EB">mph</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="700" fontFamily="Titan One">{roundedWindSpeed.toLocaleString()}</Text>
+            <Text fontSize={"24px"} fontWeight="400" fontFamily="Inter" color="#E7E7EB">mph</Text>
           </HStack>
           <HStack>
             <Icon as={WiWindDeg} style={{ transform: `rotate(${details.windDirection}deg)` }} fontSize="30px" color="#E7E7EB" />
-            <Text fontSize={"24px"} color="#E7E7EB">{wordWindDirection}</Text>
+            <Text fontSize={"24px"} fontWeight="400" color="#E7E7EB">{wordWindDirection}</Text>
           </HStack>
         </Card>
 
         <Card
+          className="highlight-card"
+          fontFamily="Inter Tight"
           bgColor="#1E213A"
           variant="elevated"
-          width="460px"
+          width={["350px", "460px"]}
           height="230px"
           borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
-          boxShadow="dark-lg"
+          boxShadow="slg"
           textAlign="center"
           justifyContent="center"
           alignItems="center"
@@ -95,30 +102,32 @@ function WeatherDetails({ details }) {
           p={2}
           gap="10px"
         >
-          <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Humidity</chakra.p>
+          <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Inter" fontSize="18px">Humidity</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{roundedHumidity.toLocaleString()}</Text>
-            <Text fontSize={"24px"} color="#E7E7EB">%</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="700" fontFamily="Titan One">{roundedHumidity.toLocaleString()}</Text>
+            <Text fontSize={"24px"} color="#E7E7EB" fontWeight="bold" fontFamily="Inter">%</Text>
           </HStack>
-          <HStack w="350px" justifyContent={"space-between"}>
+          <HStack w={["300px", "350px"]} justifyContent={"space-between"} alignItems="bottom">
             <chakra.p color="#fff" fontSize="12px">0</chakra.p>
             <chakra.p color="#fff" fontSize="12px">50</chakra.p>
             <chakra.p color="#fff" fontSize="12px">100</chakra.p>
           </HStack>
-          <Progress width="350px" borderRadius="lg" value={details.humidity} size="lg" colorScheme="yellow" min={0} max={100} />
+          <Progress width={["300px", "350px"]} borderRadius="lg" value={details.humidity} size="lg" colorScheme="yellow" min={0} max={100} />
         </Card>
-      </Box>
-      <Box display="grid" gridAutoFlow="column" gridTemplateColumns={"repeat(2, 1fr)"} gap={"20px"} width="1000px" mx="auto">
+      </Box >
+      <Box display="grid" gridAutoFlow="column" gridTemplateColumns={"repeat(2, 1fr)"} gap={"20px"} mx="auto" className="highlight-row">
 
         <Card
+          className="highlight-card"
+          fontFamily="Inter Tight"
           bgColor="#1E213A"
           variant="elevated"
-          width="460px"
+          width={["350px", "460px"]}
           height="180px"
           borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
-          boxShadow="dark-lg"
+          boxShadow="slg"
           m={2}
           p={2}
           textAlign="center"
@@ -126,22 +135,24 @@ function WeatherDetails({ details }) {
           alignItems="center"
           gap={"10px"}
         >
-          <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Visibility</chakra.p>
+          <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Inter" fontSize="18px">Visibility</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{roundedVisibility.toLocaleString()}</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="700" fontFamily="Titan One">{roundedVisibility.toLocaleString()}</Text>
             <Text fontSize={"24px"} color="#E7E7EB">miles</Text>
           </HStack>
         </Card>
 
         <Card
+          className="highlight-card"
+          fontFamily="Inter Tight"
           bgColor="#1E213A"
           variant="elevated"
-          width="460px"
+          width={["350px", "460px"]}
           height="180px"
           borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
-          boxShadow="dark-lg"
+          boxShadow="slg"
           m={2}
           p={2}
           textAlign="center"
@@ -149,14 +160,14 @@ function WeatherDetails({ details }) {
           alignItems="center"
           gap="10px"
         >
-          <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Poppins" fontSize="18px">Air Pressure</chakra.p>
+          <chakra.p color="#E7E7EB" fontWeight="500" fontFamily="Inter" fontSize="18px">Air Pressure</chakra.p>
           <HStack>
-            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="bold">{roundedAirPressure.toLocaleString()}</Text>
+            <Text fontSize={"64px"} color="#E7E7EB" fontWeight="700" fontFamily="Titan One">{roundedAirPressure.toLocaleString()}</Text>
             <Text fontSize={"24px"} color="#E7E7EB">mb</Text>
           </HStack>
-        </Card>
-      </Box>
-    </chakra.div>
+        </Card >
+      </Box >
+    </div >
   );
 }
 

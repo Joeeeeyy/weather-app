@@ -2,13 +2,10 @@
 import React from "react";
 import moment from "moment";
 import { IconContext } from "react-icons";
-import { Card, Box, Heading, Text, chakra, HStack } from "@chakra-ui/react";
-import {
-  ArrowUpIcon,
-  ArrowDownIcon,
-} from "@chakra-ui/icons";
+import { Card, Box, Text, chakra, HStack } from "@chakra-ui/react";
+import "../css/Forecast.css";
 
-const Forecast = ({ forecast, isCelsius }) => {
+const Forecast = ({ forecast, isCelsius, toggleUnits }) => {
   const getWeatherIcon = (icon) => {
     // Map Visual Crossings API icon codes to icon paths
     switch (icon) {
@@ -71,19 +68,15 @@ const Forecast = ({ forecast, isCelsius }) => {
 
   const next5DaysForecast = filterUniqueDates(forecast);
 
-
   return (
-    <chakra.div my="45px" gap="50px">
-      <Heading my="30px" fontSize="24px">
-        5-Day Forecast
-      </Heading>
+    <Box className="card-group" overflow="scroll">
       <Box
         display="grid"
         gridAutoFlow="column"
         gridAutoColumns="repeat(5, 1fr)"
         gap="5px"
-        width="1000px"
         mx="auto"
+        className="forecast-container"
       >
         {next5DaysForecast &&
           next5DaysForecast.map((day, index) => {
@@ -100,6 +93,7 @@ const Forecast = ({ forecast, isCelsius }) => {
                 variant="elevated"
                 bgColor="#1E213A"
                 w="160px"
+                fontFamily="Poppins"
                 height="220px"
                 borderWidth="1px"
                 borderRadius="lg"
@@ -112,7 +106,7 @@ const Forecast = ({ forecast, isCelsius }) => {
                 m={2}
                 p={2}
               >
-                <Text fontSize="16px" fontWeight="bold" color="#E7E7EB">
+                <Text fontSize="16px" fontWeight="bold" color="#E7E7EB" fontFamily="Inter Tight">
                   {cardDate}
                 </Text>
                 <IconContext.Provider
@@ -126,14 +120,12 @@ const Forecast = ({ forecast, isCelsius }) => {
                   />
                 </IconContext.Provider>
                 <HStack color="#E7E7EB" display="flex">
-                  <Text>
-                    <ArrowUpIcon />
-                    {day.maxTemp.toFixed(0)}
-                    {isCelsius ? "°C" : "°F"}{" "}
+                  <Text fontWeight="600" fontFamily="Inter Tight" cursor="pointer">
+                    {Math.round(day.maxTemp)}
+                    {isCelsius ? "°C" : "°F"}
                   </Text>
-                  <Text>
-                    <ArrowDownIcon />
-                    {day.minTemp.toFixed(0)}
+                  <Text fontWeight="400" fontFamily="Inter Tight" cursor="pointer">
+                    {Math.round(day.minTemp)}
                     {isCelsius ? "°C" : "°F"}
                   </Text>
                 </HStack>
@@ -141,8 +133,10 @@ const Forecast = ({ forecast, isCelsius }) => {
             );
           })}
       </Box>
-    </chakra.div>
+    </Box >
+
   );
 };
+
 
 export default Forecast;
